@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# PostgreSQL authentification
+config.py
+
+# Mac OS
+.DS_Store
