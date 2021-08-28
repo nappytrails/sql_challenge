@@ -20,3 +20,34 @@ FROM
 WHERE
 	employees.hire_date >= '1986-01-01' AND employees.hire_date < '1987-01-01';
 	
+-- Select the department number, department name, employee number, last name, and first name of all managers of each department
+SELECT
+	departments.dept_no,
+	departments.dept_name,
+	employees.emp_no,
+	employees.last_name,
+	employees.first_name
+FROM
+	dept_manager
+INNER JOIN departments ON departments.dept_no = dept_manager.dept_no
+INNER JOIN employees ON employees.emp_no = dept_manager.emp_no;
+
+-- Select the employee number, last name, first name, and department of each employee, ordered by employee number
+SELECT
+	employees.emp_no,
+	employees.last_name,
+	employees.first_name,
+	departments.dept_name
+FROM
+	dept_emp
+INNER JOIN employees ON employees.emp_no = dept_emp.emp_no
+INNER JOIN departments ON departments.dept_no = dept_emp.dept_no
+ORDER BY employees.emp_no;
+
+-- Select first name, last name, birth date, and sex of all employees whose first name is "Hercules" and last name begins with a "B"
+SELECT
+	*
+FROM
+	employees
+WHERE
+	employees.first_name = 'Hercules' AND employees.last_name LIKE 'B%';
