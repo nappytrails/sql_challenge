@@ -51,3 +51,26 @@ FROM
 	employees
 WHERE
 	employees.first_name = 'Hercules' AND employees.last_name LIKE 'B%';
+
+-- Select employee number, last name, first name, and department name of all employees in the 'Sales' OR the 'Development' department, ordered by employee number
+SELECT
+	employees.emp_no,
+	employees.last_name,
+	employees.first_name,
+	departments.dept_name
+FROM
+	dept_emp
+INNER JOIN employees ON employees.emp_no = dept_emp.emp_no
+INNER JOIN departments ON departments.dept_no = dept_emp.dept_no
+WHERE
+	departments.dept_name = 'Sales' OR departments.dept_name = 'Development'
+ORDER BY employees.emp_no;
+
+-- Count the number of employees, grouped by last name
+SELECT
+	employees.last_name,
+	COUNT(*)
+FROM
+	employees
+GROUP BY
+	employees.last_name;
